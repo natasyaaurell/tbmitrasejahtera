@@ -1,0 +1,306 @@
+ <!doctype html>
+<html lang="id">
+<head>
+  <!-- ====== INFORMASI DASAR HALAMAN ====== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toko Bangunan Mitra Sejahtera — Profil Resmi</title>
+  <meta name="description" content="Profil resmi Toko Bangunan Mitra Sejahtera. Bahan bangunan lengkap, harga bersahabat, layanan ramah & cepat." />
+
+  <!-- (Opsional) Ikon tab browser / favicon
+  <link rel="icon" href="favicon.ico" />
+  -->
+
+  <!-- ====== GAYA (CSS) DALAM SATU FILE BIAR MUDAH BELAJAR ====== -->
+  <style>
+    /* 1) Variabel warna & font supaya konsisten */
+    :root {
+      --brand: #5688df;            /* warna utama (bisa diganti) */
+      --brand-2: #ff7a00;          /* aksen (bisa diganti) */
+      --text: #1f2937;             /* abu gelap untuk teks */
+      --muted: #6b7280;            /* abu untuk teks sekunder */
+      --bg: #f8fafc;               /* warna latar lembut */
+      --card: #ffffff;             /* warna kartu */
+      --shadow: 0 8px 24px rgba(0,0,0,.08);
+      --radius: 16px;
+      --maxw: 1100px;              /* lebar konten */
+    }
+
+    /* 2) Reset sederhana + tipografi */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* 3) Utilitas */
+    .container { width: min(100% - 32px, var(--maxw)); margin-inline: auto; }
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff; font-weight: 600; letter-spacing: .2px;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .btn:hover { text-decoration: none; filter: brightness(.95); transform: translateY(-1px); }
+    .btn.ghost { background: #fff; color: var(--brand); border: 2px solid var(--brand); }
+
+    /* ====== HEADER & NAV ====== */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: rgba(255,255,255,.75);
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+    .brand .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
+    nav a { font-weight: 600; margin-left: 14px; color: var(--text); }
+    nav a:hover { color: var(--brand); }
+
+    /* ====== HERO (BERANDA) ====== */
+    .hero { padding: 64px 0 40px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: center; }
+    .hero h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.15; margin: 8px 0 12px; }
+    .hero p { color: var(--muted); font-size: 1.05rem; }
+    .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid #e5e7eb;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    /* ====== SECTION GENERIC ====== */
+    section { padding: 54px 0; }
+    section h2 { font-size: clamp(22px, 2.4vw, 32px); margin: 0 0 10px; }
+    .subtle { color: var(--muted); margin-bottom: 18px; }
+
+    /* ====== ABOUT ====== */
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    .kartu-poin { display: grid; gap: 10px; }
+    .poin { display: flex; gap: 10px; align-items: start; }
+    .poin .dot { width: 20px; height: 20px; border-radius: 50%; background: var(--brand); flex: 0 0 auto; margin-top: 4px; }
+
+    /* ====== PRODUK (GRID KATEGORI) ====== */
+    .grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+    .produk { overflow: hidden; }
+    .gambar-dummy { height: 140px; border-radius: 14px; background: linear-gradient(135deg, #dbeafe, #e9d5ff); border: 1px solid #e5e7eb; display:flex; align-items:center; justify-content:center; font-weight:700; color:#334155; }
+    .produk h3 { margin: 12px 0 6px; font-size: 1.1rem; }
+    .produk p { color: var(--muted); margin: 0; }
+
+    /* ====== KONTAK ====== */
+    .kontak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .info { display: grid; gap: 12px; }
+    .info-row { display: flex; gap: 12px; align-items: flex-start; }
+    .info-row svg { flex: 0 0 auto; }
+
+    .map { border: 0; width: 100%; height: 300px; border-radius: var(--radius); box-shadow: var(--shadow); }
+
+    /* ====== FOOTER ====== */
+    footer { padding: 24px 0 40px; border-top: 1px solid #e5e7eb; color: var(--muted); text-align: center; }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 900px) {
+      .hero .wrap { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .kontak-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      nav { display: none; } /* sederhana: sembunyikan menu di layar kecil */
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ====== HEADER & NAVIGASI ====== -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Navigasi utama">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Toko Bangunan Mitra Sejahtera</span>
+      </div>
+      <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#produk">Produk</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== BERANDA / HERO ====== -->
+  <main id="beranda" class="hero">
+    <div class="container wrap">
+      <div>
+        <p class="subtle">Bahan bangunan lengkap • Harga bersahabat</p>
+        <h1>Toko Bangunan Mitra Sejahtera<br/>Solusi rumah Anda</h1>
+        <p>Kami menyediakan semen, cat, keramik, besi, atap, pipa, alat listrik & plumbing. Siap antar ke lokasi (syarat & ketentuan berlaku).</p>
+        <div class="cta">
+          <!-- Ganti 6281234567890 dengan nomor WA toko kamu (format internasional, tanpa 0) -->
+          <a class="btn" href="https://wa.me/628567897990?text=Halo%20Toko%20Bangunan%20Mitra%20Sejahtera%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">Chat WhatsApp</a>
+          <a class="btn ghost" href="#produk">Lihat Produk</a>
+        </div>
+      </div>
+      <div class="card" aria-label="Gambar ilustrasi toko">
+        <img src="gambar/gambar1.jpg" alt="Tb MItra Sejahtera" >
+        <!-- Placeholder gambar: kamu bisa ganti dengan foto toko (tag <img src="foto-toko.jpg" alt="Toko Bangunan Tasya"/>) -->
+        <img src="gambar/gambar2.jpg" alt="Banner MItra Sejahtera" >
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top:10px;">
+          <img src="gambar/gambar3.jpg" alt="Tb MItra Sejahtera" >
+          <img src="gambar/gambar4.jpg" alt="Tb MItra Sejahtera" >
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====== TENTANG KAMI ====== -->
+  <section id="tentang" class="container">
+    <h2>Tentang Kami</h2>
+    <p class="subtle">Tb Mitra Sejahtera — Solusi Rumah Anda.</p>
+    <p>Berdiri sejak tahun 2015, TB Mitra Sejahtera telah menjadi solusi utama masyarakat Semarang dalam memenuhi kebutuhan material bangunan. </p>
+    <p>Visi & Misi: Menjadi toko bangunan terpercaya yang selalu menghadirkan produk berkualitas dengan harga bersaing. Dan memberikan pelayanan ramah, menyediakan produk lengkap, dan selalu menjaga kepuasan pelanggan.</p>
+    <div class="about">
+      <div class="card">
+        <p>Kami berkomitmen menyediakan produk yang <strong>lengkap, berkualitas</strong>, dengan <strong>pelayanan ramah & cepat</strong>. Tim kami siap membantu rekomendasi material sesuai kebutuhan dan anggaran Anda.</p>
+      </div>
+      <div class="kartu-poin">
+        <div class="poin"><span class="dot" aria-hidden="true"></span><div>
+          <strong>Harga Bersahabat</strong>
+          <div class="subtle">Diskon proyek & langganan</div>
+        </div></div>
+        <div class="poin"><span class="dot" aria-hidden="true"></span><div>
+          <strong>Produk Lengkap</strong>
+          <div class="subtle">Semen, cat, keramik, besi, pipa, aksesoris</div>
+        </div></div>
+        <div class="poin"><span class="dot" aria-hidden="true"></span><div>
+          <strong>Antar ke Lokasi</strong>
+          <div class="subtle">Tersedia Area Semarang Dan Sekitarnya(syarat & ketentuan berlaku)</div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRODUK (KATEGORI) ====== -->
+  <section id="produk" class="container">
+    <h2>Produk</h2>
+    <p class="subtle">Katalog ringkas per kategori. Hubungi kami untuk ketersediaan & harga terbaru.</p>
+    <div class="grid">
+      <!-- Contoh kartu kategori -->
+      <div class="card produk">
+        <img src="gambar/semen.jpg" alt="Tb MItra Sejahtera" >
+        <h3>Semen & Material Dasar</h3>
+        <p>Semen, pasir, batu bata, hebel</p>
+      </div>
+      <div class="card produk">
+        <img src="gambar/cat.jpg" alt="Tb MItra Sejahtera" >
+        <h3>Cat & Pelapis</h3>
+        <p>Interior, eksterior, waterproofing</p>
+      </div>
+      <div class="card produk">
+        <img src="gambar/pintu.jpg" alt="Tb MItra Sejahtera" >
+        <h3>Pintu & Jendela</h3>
+        <p>Keramik lantai, dinding, nat , Perekat , Pintu</p>
+      </div>
+      <div class="card produk">
+        <img src="gambar/besi.jpg" alt="Tb MItra Sejahtera" >
+        <h3>Besi & Baja Ringan</h3>
+        <p>Besi beton, holo, baja ringan</p>
+      </div>
+      <div class="card produk">
+        <img src="gambar/listrik.jpg" alt="Tb MItra Sejahtera" >
+        <h3>Listrik & Plumbing</h3>
+        <p>Kabel, stopkontak, pipa PVC, fitting</p>
+      </div>
+      <div class="card produk">
+        <img src="gambar/perkakas.jpg" alt="Tb MItra Sejahtera" >
+        <h3>Perkakas</h3>
+        <p>Gerinda, bor, meteran, alat tukang</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== KONTAK ====== -->
+  <section id="kontak" class="container">
+    <h2>Kontak</h2>
+    <p class="subtle">Silakan datang ke toko atau hubungi kami.</p>
+
+    <div class="kontak-grid">
+      <div class="card info">
+        <div class="info-row">
+          <!-- Ikon lokasi (SVG inline biar tanpa library) -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 22s7-5.686 7-12a7 7 0 1 0-14 0c0 6.314 7 12 7 12Z" stroke="#0f67ff" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#0f67ff" stroke-width="2"/></svg>
+          <div>
+            <strong>Alamat</strong>
+            <div class="subtle">Jl. Wolter Monginsidi No.90,Genuksari,Kec Genuk,Kota Semarang,Jawa Tengah 50117 (0895354879060)</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.15 9.81 19.86 19.86 0 0 1 .08 1.18 2 2 0 0 1 2.06 0h2a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L5.09 7.91a16 16 0 0 0 6 6l1.45-1.14a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z" stroke="#0f67ff" stroke-width="2"/></svg>
+          <div>
+            <strong>Telepon</strong>
+            <div class="subtle"><a href="tel:+622112345678">0856 7897 990</a></div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#0f67ff" stroke-width="2"/><path d="m22 6-10 7L2 6" stroke="#0f67ff" stroke-width="2"/></svg>
+          <div>
+            <strong>Email</strong>
+            <div class="subtle"><a href="mailto:halo@tokotasya.co.id">mitrasejahtera@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" stroke="#0f67ff" stroke-width="2"/></svg>
+          <div>
+            <strong>Jam Buka</strong>
+            <div class="subtle">Senin–Sabtu 07.30–16.30 WIB | Minggu 07.30–16.00</div>
+          </div>
+        </div>
+        <div>
+          <a class="btn" href="https://wa.me/628567897990?text=Halo%20Toko%20Bangunan%20Mitra%20Sejahtera%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">Chat via WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <!-- Peta Google Maps -->
+        <iframe class="map" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126721.97221189992!2d110.32587263906251!3d-7.002025057916338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70f2d75aceaf09%3A0x953f5917eee43e0!2sTB%20MITRA%20SEJAHTERA!5e0!3m2!1sid!2sid!4v1756615913525!5m2!1sid!2sid" 
+          width="100%" 
+          height="300" 
+          style="border:0; border-radius:16px;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Lokasi Toko Bangunan Mitra Sejahtera">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Toko Bangunan Mitra Sejahtera • Semua Hak Dilindungi
+    </div>
+  </footer>
+
+  <!-- ====== SEDIKIT JS: hanya untuk tahun otomatis ====== -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
